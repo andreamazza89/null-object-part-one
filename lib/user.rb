@@ -1,6 +1,7 @@
 class User
   include ActiveModel::Model
-  attr_accessor :credit_card, :subscription
+  attr_accessor :credit_card
+  attr_writer   :subscription
 
   def charge
     subscription.charge(credit_card)
@@ -12,5 +13,11 @@ class User
 
   def price
     subscription.price
+  end
+
+  private
+
+  def subscription
+    @subscription ||= MissingSubscription.new
   end
 end

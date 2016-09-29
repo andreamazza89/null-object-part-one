@@ -15,9 +15,7 @@ describe User do
 
     it 'does nothing without a subscription' do
       credit_card = double('credit_card')
-      missing_subscription = double('missing_subscription')
-      missing_subscription.stub(:charge)
-      user = User.new(subscription: missing_subscription, credit_card: credit_card)
+      user = User.new(subscription: nil, credit_card: credit_card)
 
       expect { user.charge }.not_to raise_error
     end
@@ -33,9 +31,7 @@ describe User do
     end
 
     it 'returns false without a subscription' do
-      missing_subscription = double('missing_subscription')
-      missing_subscription.stub(:has_mentoring?) { false }
-      user = User.new(subscription: missing_subscription)
+      user = User.new(subscription: nil)
 
       expect(user.has_mentoring?).to be_false
     end
@@ -51,9 +47,7 @@ describe User do
     end
 
     it 'returns zero without a subscription' do
-      missing_subscription = double('missing_subscription')
-      missing_subscription.stub(:price) { 0 }
-      user = User.new(subscription: missing_subscription)
+      user = User.new(subscription: nil)
 
       expect(user.price).to eq(0)
     end
