@@ -7,10 +7,10 @@ class User
   end
 
   def has_mentoring?
-    subscription && subscription.has_mentoring?
+    subscription.has_mentoring?
   end
 
   def price
-    subscription.try(:price) || 0
+    subscription.price
   end
 end

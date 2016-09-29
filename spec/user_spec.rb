@@ -33,7 +33,9 @@ describe User do
     end
 
     it 'returns false without a subscription' do
-      user = User.new(subscription: nil)
+      missing_subscription = double('missing_subscription')
+      missing_subscription.stub(:has_mentoring?) { false }
+      user = User.new(subscription: missing_subscription)
 
       expect(user.has_mentoring?).to be_false
     end
@@ -49,7 +51,9 @@ describe User do
     end
 
     it 'returns zero without a subscription' do
-      user = User.new(subscription: nil)
+      missing_subscription = double('missing_subscription')
+      missing_subscription.stub(:price) { 0 }
+      user = User.new(subscription: missing_subscription)
 
       expect(user.price).to eq(0)
     end
