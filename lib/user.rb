@@ -3,9 +3,7 @@ class User
   attr_accessor :credit_card, :subscription
 
   def charge
-    unless subscription.nil?
-      subscription.charge(credit_card)
-    end
+    subscription.charge(credit_card)
   end
 
   def has_mentoring?
